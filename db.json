@@ -1,0 +1,32 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "title": "در حال انجام",
+      "slug": "InProgress",
+      "items": [
+        {
+          "id": "01f20d16-ca34-4546-9c75-285a4054ad6b",
+          "title": "تست 4"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "در حال بررسی",
+      "slug": "Todo",
+      "items": []
+    },
+    {
+      "id": 3,
+      "title": "در حال اتمام",
+      "slug": "Finish",
+      "items": [
+        {
+          "id": "9b9f0ae9-eddb-43ec-94b7-6df519363ec8",
+          "title": "تست 3"
+        }
+      ]
+    }
+  ]
+}
