@@ -1,9 +1,10 @@
 import { TaskItem } from "./TaskItem";
 import { BiMessageSquareAdd } from "react-icons/bi";
 import { TaskModal } from "./TaskModal";
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import { AXIOS } from "../../../config/axios.config";
 import * as uuid from "uuid";
+import { AppContext } from "../../../context/store";
 
 interface ITaskList {
   title?: string;
@@ -17,6 +18,8 @@ export const TaskList: React.FC<ITaskList> = ({
   id,
   onCompleted,
 }): JSX.Element => {
+  const { setState } = useContext(AppContext);
+
   const ref = useRef<any>();
 
   const handleShowModal = () => {
@@ -41,7 +44,7 @@ export const TaskList: React.FC<ITaskList> = ({
     await AXIOS.put(`/tasks/${id}`, currentTask);
 
     // 2. update state
-    onCompleted(tasks);
+    setState(tasks);
 
     // 3. close modal
     handleCloseModal();
@@ -63,7 +66,7 @@ export const TaskList: React.FC<ITaskList> = ({
     await AXIOS.put(`/tasks/${id}`, currentTask);
 
     // 2. update state
-    onCompleted(tasks);
+    setState(tasks);
 
     // 3. close modal
     handleCloseModal();
