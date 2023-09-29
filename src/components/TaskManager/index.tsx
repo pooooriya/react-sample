@@ -1,21 +1,19 @@
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { AXIOS } from "../../config/axios.config";
 import { API_URLS } from "../../constants/api.urls";
 import { TaskList } from "./TaskList";
-import { AppContext } from "../../context/store";
-import { TaskActions } from "../../context/actions/tasks.actions";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { AllTasksRecieved } from "../../redux/features/task.slice";
 
 interface ITaskManager {}
 export const TaskManager: React.FC<ITaskManager> = (): JSX.Element => {
-  const { state, dispatch } = useContext(AppContext);
-
+  const state = useAppSelector((state) => state.tasks);
+  const dispatch = useAppDispatch();
   const fetchTasks = async () => {
     const response = await AXIOS.get(API_URLS.Tasks);
-    dispatch({
-      type: TaskActions.ALL_ACTIONS_RECEIVED,
-      payload: response.data,
-    });
+    dispatch(AllTasksRecieved(response.data));
   };
+  console.log(state);
 
   useEffect(() => {
     fetchTasks();

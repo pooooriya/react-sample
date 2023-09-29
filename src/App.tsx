@@ -2,11 +2,12 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { HomePage } from "./pages/HomaPage";
 import { Authentication } from "./pages/Authentication";
-import { AppProvider } from "./context/store";
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
 
 const App = (): JSX.Element => {
   return (
-    <AppProvider>
+    <Provider store={store}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
@@ -15,7 +16,7 @@ const App = (): JSX.Element => {
           </Route>
         </Routes>
       </BrowserRouter>
-    </AppProvider>
+    </Provider>
   );
 };
 
